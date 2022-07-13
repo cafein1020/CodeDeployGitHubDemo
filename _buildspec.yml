@@ -1,0 +1,27 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo "install packages"
+      - yum install -y httpd
+      - yum install curl
+  pre_build:
+    commands:
+      - cp ./index.html /var/www/html/
+      - ls -l /var/www/html/
+      - httpd -S
+        #- ps aux | grep httpd
+  build:
+    commands:
+      - echo "test start"
+      - cat /var/www/html/index.html
+      - curl http://localhost/ || true
+  post_build:
+    commands:
+      - echo "Build completed"
+
+artifacts:
+  files:
+    #- '**/*'
+    #- './index.html'
+    - '/var/www/html/*'
