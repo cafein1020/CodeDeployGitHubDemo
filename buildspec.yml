@@ -6,8 +6,8 @@ phases:
       - $(aws ecr get-login --region ap-northeast-1 --no-include-email)
   build:
     commands:
-      - docker build -t {REPO_NAME}:{tag} .
-      - docker tag {REPO_NAME}:{tag} {account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/{REPO_NAME}:{tag}
-      - docker push {account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/{REPO_NAME}:{tag}
+      - docker build -t multistage-ecr:latest .
+      - docker tag multistage-ecr:latest 004236640149.dkr.ecr.ap-northeast-1.amazonaws.com/multistage-ecr:latest
+      - docker push 004236640149.dkr.ecr.ap-northeast-1.amazonaws.com/multistage-ecr:latest
   post_build:
     commands:
