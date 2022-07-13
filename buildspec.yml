@@ -3,7 +3,8 @@ version: 0.1
 phases:
   pre_build:
     commands:
-      - $(aws ecr get-login --region ap-northeast-1 --no-include-email)
+      #- $(aws ecr get-login --region ap-northeast-1 --no-include-email)
+      -  $(aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 004236640149.dkr.ecr.ap-northeast-1.amazonaws.com)
   build:
     commands:
       - docker build -t multistage-ecr:latest .
