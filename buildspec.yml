@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo "install packages"
+      - yum install -y httpd
+  pre_build:
+    commands:
+      - mv ./index.html /var/www/html/
+  build:
+    commands:
+      - echo "test start"
+      - curl http://localhost/ || true
+  post_build:
+    commands:
+      - echo "Build completed"
+  #artifacts:
+    #files:
+      #- './result.txt'
