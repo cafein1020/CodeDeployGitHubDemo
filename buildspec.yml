@@ -4,13 +4,13 @@ phases:
     commands:
       - echo "install packages"
       - yum install -y httpd
-      - systemctl start httpd
+      - yum install curl
   pre_build:
     commands:
       - mv ./index.html /var/www/html/
       - ls -l /var/www/html/
       - httpd -S
-      - systemctl status httpd
+        #- ps aux | grep httpd
   build:
     commands:
       - echo "test start"
